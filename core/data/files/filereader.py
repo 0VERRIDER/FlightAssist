@@ -8,9 +8,8 @@ class ReadFile:
     def read(self):
         try:
             with open(self.file_path, 'r') as file:
-                content = file.read()
-                file.close()
-                return content
+                return file.read()
+
         except FileNotFoundError:
             print("File not found")
             return None
@@ -22,9 +21,8 @@ class ReadFile:
     def readline(self):
         try:
             with open(self.file_path, 'r') as file:
-                content = file.read()
-                file.close()
-                return content
+                return file.read()
+                
         except FileNotFoundError:
             print("File not found")
             return None
@@ -36,9 +34,8 @@ class ReadFile:
     def read_json(self):
         try:
             with open(self.file_path, 'r') as file:
-                content = json.load(file)
-                file.close()
-                return content
+                return json.load(file)
+                
         except FileNotFoundError:
             print("File not found")
             return None
