@@ -36,7 +36,9 @@ class ReadFile:
     def read_json(self):
         try:
             with open(self.file_path, 'r') as file:
-                return json.load(file)
+                content = json.load(file)
+                file.close()
+                return content
         except FileNotFoundError:
             print("File not found")
             return None
