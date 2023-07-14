@@ -1,7 +1,7 @@
 import sqlite3
 # class for Database with basic sqlite CRUD operations
 
-class Database:
+class database:
 
     def __init__(self, db_file):
         self.db_file = db_file

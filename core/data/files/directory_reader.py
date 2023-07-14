@@ -1,6 +1,7 @@
 import os
-import filereader as fr
+import core.data.files.file_reader as fr
 
+# class to read all files in a directory
 class ReadFiles:
     def __init__(self, dir_path):
         self.dir_path = dir_path
@@ -11,15 +12,19 @@ class ReadFiles:
             file_list = os.listdir(self.dir_path)
             data = {}
 
+            # read each file and store in a dictionary
             for file_name in file_list:
               file = fr.ReadFile(self.dir_path + '/' + file_name)
               name = file_name.split(".")[0]
               ext = file_name.split(".")[-1]
+
               data[name] = {
                   "data" : [line.strip() for line in file.readline()],
                   "type" :  ext,
                   }
+              
             return data
+        
         except FileNotFoundError:
             print("Directory not found")
             return None
