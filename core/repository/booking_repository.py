@@ -9,7 +9,7 @@ class BookingRepository(ABC):
         pass
 
     @abstractmethod
-    def get_booking(self, booking_id) -> Booking:
+    def get_booking(self, booking_id):
         pass
 
     @abstractmethod
@@ -21,7 +21,7 @@ class BookingRepository(ABC):
         pass
 
     @abstractmethod
-    def get_all_bookings(self) -> list(Booking):
+    def get_all_bookings(self):
         pass
 
     @abstractmethod

@@ -5,6 +5,7 @@ class DatabaseHandler:
 
     def __init__(self, db_file):
         self.db_file = db_file
+        self.conn = None
 
     def __enter__(self):
       try:
@@ -46,9 +47,9 @@ class DatabaseHandler:
           self.cursor.execute(query)
           self.conn.commit()
         except Exception as e:
-          print("Invalid Query.", e )
+          print("Invalid CREATE TABLE Query.", e )
 
-    def insert(self, table_name: str, values: list, columns= []) -> None:
+    def insert(self, table_name: str, values, columns= []) -> None:
         """
         Insert a row into the table
 
@@ -65,16 +66,17 @@ class DatabaseHandler:
 
         values_str = ""
         for value in values:
-            values_str += "'" + str(value) + "', "
+            values_str += "\"" + str(value) + "\", "
         values_str = values_str[:-2]
 
         query = "INSERT INTO " + table_name  + columns_str + " VALUES (" + values_str + ")"
+        print(query)
 
         try:
           self.cursor.execute(query)
           self.conn.commit()
         except Exception as e:
-          print("Invalid Query: ", e)
+          print("Invalid INSERT Query: ", e)
 
     def select(self, table_name: str, columns: list, where = "", attrs = "") -> list:
         """
