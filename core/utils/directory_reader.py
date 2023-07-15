@@ -1,5 +1,5 @@
 import os
-import core.data.files.file_reader as fr
+import core.utils.file_reader as fr
 
 # class to read all files in a directory
 class ReadFiles:

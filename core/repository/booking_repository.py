@@ -1,13 +1,15 @@
 from abc import abstractmethod,ABC
+from core.entity.booking import Booking
 
 # interface for BookingRepository
 class BookingRepository(ABC):
+
     @abstractmethod
-    def add_booking(self, booking):
+    def add_booking(self, booking: Booking):
         pass
 
     @abstractmethod
-    def get_booking(self, booking_id):
+    def get_booking(self, booking_id) -> Booking:
         pass
 
     @abstractmethod
@@ -19,11 +21,11 @@ class BookingRepository(ABC):
         pass
 
     @abstractmethod
-    def get_all_bookings(self):
+    def get_all_bookings(self) -> list(Booking):
         pass
 
     @abstractmethod
-    def update_booking(self, booking):
+    def update_booking(self, booking: Booking):
         pass
 
     @abstractmethod
