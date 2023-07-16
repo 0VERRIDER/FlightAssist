@@ -1,6 +1,6 @@
 from core.data.database.database_booking_repository import DatabaseBookingRepository
 from core.usecase.booking.update_booking_usecase import UpdateBookingUseCase, UpdateBookingRequest, UpdateBookingResponse, UpdateBookingError
-from core.utils.database_handler import DatabaseHandler as database_handler
+from core.data.database.database_handler import DatabaseHandler as database_handler
 from colorama import Fore, Style
 
 class TestUpdateBookingUsecase:
@@ -15,13 +15,13 @@ class TestUpdateBookingUsecase:
                 flight_id=1,
                 booking_date="2021-05-05",
                 booking_status="Confirmed",
-                booked_seats=1,
+                booked_seats=["1_A", "2_A", "3_A", "4_A", "5_A"],
                 booked_seats_type="Adult",
                 flight_class=  "Economy",
                 meal_preference="Vegan",
                 booking_email="",
                 booking_phone="",
-                booking_name=""
+                booking_name="",
                 )
                 
                 usecase = UpdateBookingUseCase(self.database_booking_repository, request)

@@ -13,6 +13,7 @@ class AddBookingRequest(request):
                 booked_seats_type, 
                 flight_class, 
                 meal_preference,
+                flight_price,
                 booking_email = None,
                 booking_phone = None,
                 booking_name = None
@@ -29,12 +30,13 @@ class AddBookingRequest(request):
         self.booked_seats_type = booked_seats_type
         self.flight_class = flight_class
         self.meal_preference = meal_preference
+        self.flight_price = flight_price
 
 
 # Response
 class AddBookingResponse(response):
-    def __init__(self):
-        pass
+    def __init__(self, booking_id: str = None):
+        self.booking_id = booking_id
 
 # Error
 class AddBookingError(error):
@@ -60,10 +62,11 @@ class AddBookingUseCase:
                 self.request.meal_preference,
                 self.request.booking_email,
                 self.request.booking_phone,
-                self.request.booking_name
+                self.request.booking_name,
+                self.request.flight_price
             )
-            self.booking_repository.add_booking(new_booking)
-            return AddBookingResponse()
+            booking_id = self.booking_repository.add_booking(new_booking)
+            return AddBookingResponse(booking_id)
         except Exception as err:
             return AddBookingError(str(err))
         

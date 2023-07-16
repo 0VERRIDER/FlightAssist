@@ -10,6 +10,7 @@ class DatabaseHandler:
     def __enter__(self):
       try:
         self.conn = sqlite3.connect(self.db_file)
+        self.conn.row_factory = dict_factory
         self.cursor = self.conn.cursor()
         return self.cursor
       except Exception as e:
@@ -74,6 +75,7 @@ class DatabaseHandler:
         try:
           self.cursor.execute(query)
           self.conn.commit()
+          return self.cursor.lastrowid
         except Exception as e:
           raise Exception("Invalid INSERT Query.", e)
 
@@ -173,3 +175,10 @@ class DatabaseHandler:
         :return: None
         """
         self.conn.close()
+
+
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d

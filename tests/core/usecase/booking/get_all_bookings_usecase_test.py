@@ -1,6 +1,6 @@
 from core.data.database.database_booking_repository import DatabaseBookingRepository
 from core.usecase.booking.get_all_bookings_usecase import GetAllBookingsUseCase, GetAllBookingsRequest, GetAllBookingsResponse, GetAllBookingsError
-from core.utils.database_handler import DatabaseHandler as database_handler
+from core.data.database.database_handler import DatabaseHandler as database_handler
 from colorama import Fore, Style
 
 class TestGetAllBookingsUsecase:

@@ -1,6 +1,6 @@
 from core.usecase.booking.delete_booking_usecase import DeleteBookingUseCase, DeleteBookingRequest, DeleteBookingResponse, DeleteBookingError
 from core.data.database.database_booking_repository import DatabaseBookingRepository
-from core.utils.database_handler import DatabaseHandler as database_handler
+from core.data.database.database_handler import DatabaseHandler as database_handler
 from colorama import Fore, Style
 
 class TestDeleteBookingUsecase:

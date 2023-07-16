@@ -12,7 +12,8 @@ class Booking:
             meal_preference,
             booking_email = None,
             booking_phone = None,
-            booking_name = None
+            booking_name = None,
+            flight_price = None
             ):
         
         self.booking_id = booking_id
@@ -26,3 +27,4 @@ class Booking:
         self.booked_seats_type = booked_seats_type
         self.flight_class = flight_class
         self.meal_preference = meal_preference
+        self.flight_price = flight_price

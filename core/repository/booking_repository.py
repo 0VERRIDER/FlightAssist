@@ -31,4 +31,7 @@ class BookingRepository(ABC):
     @abstractmethod
     def delete_booking(self, booking_id):
         pass
-        
+    
+    @abstractmethod
+    def get_flight_by_flight_id_and_flight_class(self, flight_id, flight_class):
+        pass

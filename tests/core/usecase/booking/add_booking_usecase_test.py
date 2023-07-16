@@ -1,6 +1,6 @@
 from core.data.database.database_booking_repository import DatabaseBookingRepository
 from core.usecase.booking.add_booking_usecase import AddBookingUseCase, AddBookingRequest, AddBookingResponse, AddBookingError
-from core.utils.database_handler import DatabaseHandler as database_handler
+from core.data.database.database_handler import DatabaseHandler as database_handler
 from colorama import Fore, Style
 
 class TestAddBookingUsecase:
@@ -14,10 +14,11 @@ class TestAddBookingUsecase:
             flight_id = "A1234",
             booking_date = "2021-01-01",
             booking_status = "Confirmed",
-            booked_seats = ["1A", "1B", "1C", "1D", "1E"],
+            booked_seats = ["1_A", "2_A", "3_A", "4_A", "5_A"],
             booked_seats_type = ["window", "aisle", "aisle", "aisle", "window"],
             flight_class = "Economy",
-            meal_preference = "Vegetarian"
+            meal_preference = "Vegetarian",
+            flight_price= 1000
         )
 
         usecase = AddBookingUseCase(self.database_booking_repository, request)

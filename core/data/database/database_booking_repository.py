@@ -1,6 +1,6 @@
 from core.repository.booking_repository import BookingRepository
 from core.entity.booking import Booking
-from core.utils.database_handler import DatabaseHandler
+from core.data.database.database_handler import DatabaseHandler
 
 class DatabaseBookingRepository(BookingRepository):
 
@@ -13,8 +13,8 @@ class DatabaseBookingRepository(BookingRepository):
             with self.database:
                 columns = list(booking.__dict__.keys())[1:]
                 values = list(booking.__dict__.values())[1:]
-                self.database.insert(table_name=self.table_name, columns=columns, values=values)
-
+                return self.database.insert(table_name=self.table_name, columns=columns, values=values)
+    
     def get_booking(self, booking_id):
             with self.database:
                 booking = self.database.select(table_name=self.table_name, columns=["*"], where="booking_id = '" + str(booking_id) + "'")
@@ -36,14 +36,23 @@ class DatabaseBookingRepository(BookingRepository):
 
     def update_booking(self, booking: Booking):
             with self.database:
-                columns = list(booking.__dict__.keys())[1:]
-                values = list(booking.__dict__.values())[1:]
+                booking_dict = {k: v for k, v in booking.__dict__.items() if v}
+                columns = list(booking_dict.keys())[1:]
+                values = list(booking_dict.values())[1:]
                 self.database.update(table_name=self.table_name, columns=columns, values=values, where="booking_id = '" + str(booking.booking_id) + "'")
 
     def delete_booking(self, booking_id):
         try:
             with self.database:
                 self.database.delete(table_name=self.table_name, where="booking_id = '" + str(booking_id) + "'")
+        except Exception as e:
+            return e
+        
+    def get_flight_by_flight_id_and_flight_class(self, flight_id, flight_class):
+        try:
+            with self.database:
+                flight = self.database.select(table_name=self.table_name, columns=["booked_seats", "meal_preference"], where="flight_id = '" + str(flight_id) + "' AND flight_class = '" + str(flight_class) + "'")
+                return flight
         except Exception as e:
             return e
         

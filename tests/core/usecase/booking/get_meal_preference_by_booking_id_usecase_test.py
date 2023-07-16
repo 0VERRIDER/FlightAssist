@@ -1,6 +1,6 @@
 from core.data.database.database_booking_repository import DatabaseBookingRepository
 from core.usecase.booking.get_meal_preference_by_booking_id_usecase import GetMealPreferenceByBookingIdUseCase, GetMealPreferenceByBookingIdRequest, GetMealPreferenceByBookingIdResponse, GetMealPreferenceByBookingIdError
-from core.utils.database_handler import DatabaseHandler as database_handler
+from core.data.database.database_handler import DatabaseHandler as database_handler
 from colorama import Fore, Style
 
 class TestGetMealPreferenceByBookingIdUsecase:

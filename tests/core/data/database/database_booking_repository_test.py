@@ -1,7 +1,7 @@
 from colorama import Fore, Style
 from core.data.database.database_booking_repository import DatabaseBookingRepository
 from core.entity.booking import Booking
-from core.utils.database_handler import DatabaseHandler as database_handler
+from core.data.database.database_handler import DatabaseHandler as database_handler
 
 
 class DatabaseBookingRepositoryTest:
@@ -13,10 +13,11 @@ class DatabaseBookingRepositoryTest:
                                 flight_id = "A1234",
                                 booking_date = "2021-01-01",
                                 booking_status = "Confirmed",
-                                booked_seats = ["1A", "1B", "1C", "1D", "1E"],
+                                booked_seats = ["1_A", "2_A", "3_A", "4_A", "5_A"],
                                 booked_seats_type = ["window", "aisle", "aisle", "aisle", "window"],
                                 flight_class = "Economy",
-                                meal_preference = "Vegetarian"
+                                meal_preference = "Vegetarian",
+                                flight_price= 1000
                  )
             with database:
                 database.create_table(
@@ -32,7 +33,8 @@ class DatabaseBookingRepositoryTest:
                                     ("booked_seats", "TEXT"),
                                     ("booked_seats_type", "TEXT"),
                                     ("flight_class", "TEXT"),
-                                    ("meal_preference", "TEXT")
+                                    ("meal_preference", "TEXT"),
+                                    ("flight_price", "TEXT")
                                     ])
                     
         def test_add_booking(self):
@@ -47,6 +49,7 @@ class DatabaseBookingRepositoryTest:
         def test_get_booking(self):
             try:
                 data = self.database_booking_repository.get_booking(booking_id = 1)
+                print(data)
                 return(Fore.GREEN + "Repository Test passed" + Style.RESET_ALL)
             except Exception as e:
                 return(Fore.RED + "Repository Test failed: " + str(e) + Style.RESET_ALL)
