@@ -46,3 +46,4 @@ class DatabaseBookingRepository(BookingRepository):
                 self.database.delete(table_name=self.table_name, where="booking_id = '" + str(booking_id) + "'")
         except Exception as e:
             return e
+        

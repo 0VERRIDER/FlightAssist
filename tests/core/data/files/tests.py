@@ -1,6 +1,7 @@
 from tests.core.data.files.file_flight_repository_test import FileFlightRepositoryTest
 
 class TestFileFlightRepository:
+    
     def __init__(self):
         pass
     

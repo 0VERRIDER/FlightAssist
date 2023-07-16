@@ -50,11 +50,4 @@ class FlightRepository(ABC):
     def update_flight_seats_by_id(self, flight_id, seats):
         pass
 
-    @abstractmethod
-    def get_flight_by_type(self, flight_type):
-        pass
-
-    @abstractmethod
-    def get_flight_by_type_and_seats(self, flight_type, seats):
-        pass
 

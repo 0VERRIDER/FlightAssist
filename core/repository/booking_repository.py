@@ -5,65 +5,30 @@ from core.entity.booking import Booking
 class BookingRepository(ABC):
 
     @abstractmethod
-    def add_flight(self, flight):
+    def add_booking(self, booking: Booking):
         pass
 
     @abstractmethod
-    def get_flight(self, flight_id):
-        pass
-    
-    @abstractmethod
-    def get_all_flights(self):
-        pass
-    
-    @abstractmethod
-    def update_flight(self, flight):
-        pass
-    
-    @abstractmethod
-    def delete_flight(self, flight_id):
+    def get_booking(self, booking_id):
         pass
 
     @abstractmethod
-    def get_flight_by_destination(self, destination):
+    def get_meal_preference_by_booking_id(self, booking_id):
+        pass
+
+    @abstractmethod
+    def set_meal_preference_by_booking_id(self, booking_id, meal_preference):
         pass
     
     @abstractmethod
-    def get_flight_by_origin(self, origin):
+    def get_all_bookings(self):
         pass
     
     @abstractmethod
-    def get_flight_by_date(self, date):
-        pass
-
-    @abstractmethod
-    def get_flight_by_seats(self, seats):
-        pass
-
-    @abstractmethod
-    def get_flight_by_destination_and_seats(self, destination, seats):
-        pass
-
-    @abstractmethod
-    def get_flight_seats_by_id(self, flight_id):
+    def update_booking(self, booking: Booking):
         pass
     
-    @abstractmethod 
-    def get_all_flights_and_seats(self):
-        pass
-
     @abstractmethod
-    def get_flight_seats_by_id_and_type(self, flight_id, flight_type):
+    def delete_booking(self, booking_id):
         pass
         
-    @abstractmethod
-    def update_flight_seats_by_id(self, flight_id, seats):
-        pass
-
-    @abstractmethod
-    def get_flight_types_by_id(self, flight_id, flight_type):
-        pass
-
-    @abstractmethod
-    def get_flight_by_type_and_seats(self, flight_type, seats):
-        pass

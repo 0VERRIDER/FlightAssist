@@ -55,17 +55,15 @@ class FileFlightRepository(FlightRepository):
 
     def get_flight_seats_by_id_and_type(self, flight_id, flight_type):
         flight = self.get_flight(flight_id)[0]
-        return flight["seat_details"]["BUSINESS"]
+        return flight["seat_details"][flight_type]
         
     def update_flight_seats_by_id(self, flight_id, seats):
         pass
 
-    def get_flight_types_by_id(self, flight_id):
+    def get_flight_types_by_id(self, flight_id, flight_type):
         flight = self.get_flight(flight_id)[0]
         return list(flight["seat_details"].keys())
 
     def get_flight_by_type_and_seats(self, flight_type, seats):
         pass
-
-    def get_flight_by_type(self, flight_type):
-        pass
+    
