@@ -11,7 +11,7 @@ class TestBookingUsecases:
     def __init__(self):
         pass
     def run(self):
-        print("Running tests for usecase")
+        print("Running tests for Booking Usecases")
         print("Add Booking Usecase : " + add_booking_usecase_test.TestAddBookingUsecase.test_add_booking(self))
         print("Get Booking Usecase : " + get_booking_usecase_test.TestGetBookingUsecase.test_get_booking(self))
         print("Get All Bookings Usecase : " + get_all_bookings_usecase_test.TestGetAllBookingsUsecase.test_get_all_bookings(self))
