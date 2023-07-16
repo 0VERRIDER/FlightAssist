@@ -1,13 +1,11 @@
-# test for database_booking_repository.py
-import sys
+from colorama import Fore, Style
 from core.data.database.database_booking_repository import DatabaseBookingRepository
 from core.entity.booking import Booking
 from core.utils.database_handler import DatabaseHandler as database_handler
 
 
-class TestDatabaseBookingRepository:
-        def setup_method(self):
-            sys.path.append('../../../../core/')
+class DatabaseBookingRepositoryTest:
+        def __init__(self):
             database = database_handler("test.db")
             self.database_booking_repository = DatabaseBookingRepository(database)
             self.test_booking = Booking(
@@ -39,56 +37,52 @@ class TestDatabaseBookingRepository:
                     
         def test_add_booking(self):
             try:
-                print(self.test_booking)
                 self.database_booking_repository.add_booking(
                     booking = self.test_booking
                 )
+                return(Fore.GREEN + "Repository Test passed" + Style.RESET_ALL)
             except Exception as e:
-                print(e)
-                assert False
+                return(Fore.RED + "Repository Test failed: " + str(e) + Style.RESET_ALL)
 
         def test_get_booking(self):
             try:
                 data = self.database_booking_repository.get_booking(booking_id = 1)
-                print(data)
+                return(Fore.GREEN + "Repository Test passed" + Style.RESET_ALL)
             except Exception as e:
-                print(e)
-                assert False
+                return(Fore.RED + "Repository Test failed: " + str(e) + Style.RESET_ALL)
     
         def test_get_meal_preference_by_booking_id(self):
             try:
                 data = self.database_booking_repository.get_meal_preference_by_booking_id(booking_id = 1)
-                print(data)
+                return(Fore.GREEN + "Repository Test passed" + Style.RESET_ALL)
             except Exception as e:
-                print(e)
-                assert False
+                return(Fore.RED + "Repository Test failed: " + str(e) + Style.RESET_ALL)
     
         def test_set_meal_preference_by_booking_id(self):
             try:
                 self.database_booking_repository.set_meal_preference_by_booking_id(booking_id = 1, meal_preference = "Non-Vegetarian")
+                return(Fore.GREEN + "Repository Test passed" + Style.RESET_ALL)
             except Exception as e:
-                print(e)
-                assert False
+                return(Fore.RED + "Repository Test failed: " + str(e) + Style.RESET_ALL)
     
         def test_get_all_bookings(self):
             try:
                 data = self.database_booking_repository.get_all_bookings()
-                print(data)
+                return(Fore.GREEN + "Repository Test passed" + Style.RESET_ALL)
             except Exception as e:
-                print(e)
-                assert False
+                return(Fore.RED + "Repository Test failed: " + str(e) + Style.RESET_ALL)
     
         def test_update_booking(self):
             try:
                 self.test_booking.booking_status = "Cancelled"
                 self.database_booking_repository.update_booking(booking = self.test_booking)
+                return(Fore.GREEN + "Repository Test passed" + Style.RESET_ALL)
             except Exception as e:
-                print(e)
-                assert False
+                return(Fore.RED + "Repository Test failed: " + str(e) + Style.RESET_ALL)
     
         def test_delete_booking(self):
             try:
                 self.database_booking_repository.delete_booking(booking_id = 1)
+                return(Fore.GREEN + "Repository Test passed" + Style.RESET_ALL)
             except Exception as e:
-                print(e)
-                assert False
+                return(Fore.RED + "Repository Test failed: " + str(e) + Style.RESET_ALL)

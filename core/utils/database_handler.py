@@ -13,7 +13,7 @@ class DatabaseHandler:
         self.cursor = self.conn.cursor()
         return self.cursor
       except Exception as e:
-        print("Database Connection Error.")
+        raise Exception("Database Connection Error.")
 
     def create_table(self, table_name: str, columns: list) -> None:
         """
@@ -47,7 +47,7 @@ class DatabaseHandler:
           self.cursor.execute(query)
           self.conn.commit()
         except Exception as e:
-          print("Invalid CREATE TABLE Query.", e )
+          raise Exception("Invalid CREATE TABLE Query.", e )
 
     def insert(self, table_name: str, values, columns= []) -> None:
         """
@@ -70,13 +70,12 @@ class DatabaseHandler:
         values_str = values_str[:-2]
 
         query = "INSERT INTO " + table_name  + columns_str + " VALUES (" + values_str + ")"
-        print(query)
 
         try:
           self.cursor.execute(query)
           self.conn.commit()
         except Exception as e:
-          print("Invalid INSERT Query: ", e)
+          raise Exception("Invalid INSERT Query.", e)
 
     def select(self, table_name: str, columns: list, where = "", attrs = "") -> list:
         """
@@ -100,13 +99,12 @@ class DatabaseHandler:
 
         if attrs:
           query += " " + attrs
-        print(query)
 
         try:
           self.cursor.execute(query)
           return self.cursor.fetchall()
         except Exception as e:
-          print("error: ", e)
+          raise Exception("error: ", e)
 
     def update(self, table_name, columns, values, where) -> None:
         """
@@ -123,7 +121,7 @@ class DatabaseHandler:
 
         columns_str = ""
         for column in columns:
-            columns_str += column + " = '" + values[columns.index(column)] + "', "
+            columns_str += column + " = \"" + str(values[columns.index(column)]) + "\", "
         columns_str = columns_str[:-2]
         query += columns_str
 
@@ -136,7 +134,7 @@ class DatabaseHandler:
           self.cursor.execute(query)
           self.conn.commit()
         except Exception as e:
-          print(e)
+          raise Exception(e)
 
     def delete(self, table_name, where):
         """
@@ -159,7 +157,7 @@ class DatabaseHandler:
           self.conn.commit()
 
         except Exception as e:
-          print(e)
+          raise Exception(e)
 
     def close(self):
         """
