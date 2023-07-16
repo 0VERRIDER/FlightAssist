@@ -21,7 +21,7 @@ class ReadFile:
     def readline(self):
         try:
             with open(self.file_path, 'r') as file:
-                return file.read()
+                return file.readlines()
                 
         except FileNotFoundError:
             print("File not found")

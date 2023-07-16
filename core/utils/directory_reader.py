@@ -1,6 +1,5 @@
 import os
-import core.utils.file_reader as fr
-
+from core.utils.file_reader import ReadFile
 # class to read all files in a directory
 class ReadFiles:
     def __init__(self, dir_path):
@@ -10,11 +9,12 @@ class ReadFiles:
     def read(self):
         try:
             file_list = os.listdir(self.dir_path)
+            file_list = [file for file in file_list if not file.startswith('.')]
             data = {}
 
             # read each file and store in a dictionary
             for file_name in file_list:
-              file = fr.ReadFile(self.dir_path + '/' + file_name)
+              file = ReadFile(self.dir_path + '/' + file_name)
               name = file_name.split(".")[0]
               ext = file_name.split(".")[-1]
 
