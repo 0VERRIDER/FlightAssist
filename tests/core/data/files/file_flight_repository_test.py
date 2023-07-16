@@ -96,6 +96,16 @@ class FileFlightRepositoryTest:
                     return(Fore.RED + "File flight repository test failed: No data" + Style.RESET_ALL)
             except:
                 return(Fore.RED + "File flight repository test failed" + Style.RESET_ALL)
+            
+        def test_get_flight_by_origin_and_destination(self):
+            try:
+                flights = self.file_flight_repository.get_flight_by_origin_and_destination("CHENNAI", "BANGALORE")
+                if len(flights) >= 1:
+                    return(Fore.GREEN + "File flight repository test passed" + Style.RESET_ALL)
+                else:
+                    return(Fore.RED + "File flight repository test failed: No data" + Style.RESET_ALL)
+            except:
+                return(Fore.RED + "File flight repository test failed" + Style.RESET_ALL)
 
 
 

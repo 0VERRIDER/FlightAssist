@@ -5,13 +5,14 @@ import tests.core.usecase.booking.get_all_bookings_usecase_test as get_all_booki
 import tests.core.usecase.booking.get_meal_preference_by_booking_id_usecase_test as get_meal_preference_by_booking_id_usecase_test
 import tests.core.usecase.booking.set_meal_preference_by_booking_id_usecase_test as set_meal_preference_by_booking_id_usecase_test
 import tests.core.usecase.booking.update_booking_usecase_test as update_booking_usecase_test
-
+from colorama import Fore, Back, Style
 
 class TestBookingUsecases:
     def __init__(self):
         pass
     def run(self):
-        print("Running tests for Booking Usecases")
+        print(Fore.BLACK)
+        print(Back.WHITE + "Running tests for Booking Usecases" + Style.RESET_ALL + "\n")
         print("Add Booking Usecase : " + add_booking_usecase_test.TestAddBookingUsecase.test_add_booking(self))
         print("Get Booking Usecase : " + get_booking_usecase_test.TestGetBookingUsecase.test_get_booking(self))
         print("Get All Bookings Usecase : " + get_all_bookings_usecase_test.TestGetAllBookingsUsecase.test_get_all_bookings(self))
