@@ -13,9 +13,9 @@ class ViewSeatMealPrefService:
 
             if isinstance(get_seat_meal_pref_response, GetFlightByFlightIdAndFlightClassResponse):
                 flights = get_seat_meal_pref_response.flight
+                return flights
             elif isinstance(get_seat_meal_pref_response, GetFlightByFlightIdAndFlightClassError):
                 raise Exception("Error" + get_seat_meal_pref_response.message)
 
-            print(flights)
         except Exception as err:
             raise Exception("Error" + str(err))

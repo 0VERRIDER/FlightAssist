@@ -1,31 +1,40 @@
 import sys
-# import os
+from core.data.database.database_handler import DatabaseHandler as database_handler
+from presentation.intro import intro
+from core.data.database.database_booking_repository import DatabaseBookingRepository
+from core.utils.directory_reader import ReadFiles
+from core.data.files.file_flight_repository import FileFlightRepository
 
 sys.path.append('/core/')
 sys.path.append('/test/')
 sys.path.append('/presentation/')
 
+def setup(database):
+    with database:
+                database.create_table(table_name="booking", columns=[
+                        ("booking_id", "INTEGER", ["PRIMARY KEY", "AUTOINCREMENT"]),
+                        ("booking_email", "TEXT"),
+                        ("booking_phone", "TEXT"),
+                        ("booking_name", "TEXT"),
+                        ("flight_id", "TEXT"),
+                        ("booking_date", "TEXT"),
+                        ("booking_status", "TEXT"),
+                        ("booked_seats", "TEXT"),
+                        ("booked_seats_type", "TEXT"),
+                        ("flight_class", "TEXT"),
+                        ("meal_preference", "TEXT"),
+                        ("flight_price", "TEXT")])
 
-# import tests.unittests as unittests
-# from tests.core.services.book_flight_service_test import BookFlightServiceTest
-# from tests.core.services.cancel_flight_service_test import CancelFlightServiceTest
-# from tests.core.services.view_seat_meal_pref_service_test import ViewSeatMealPrefServiceTest
-# from tests.core.services.available_seats_by_flight_and_class_service_test import AvailableSeatsByFlightandClassServiceTest
-
-# if __name__ == '__main__':
-#     unittests.run_tests()
-#     book_flight_service_test = BookFlightServiceTest()
-#     book_flight_service_test.test_book_flight()
-#     cancel_flight_service_test = CancelFlightServiceTest()
-#     cancel_flight_service_test.test_cancel_flight()
-#     view_seat_meal_pref_service_test = ViewSeatMealPrefServiceTest()
-#     view_seat_meal_pref_service_test.test_view_seat_meal_pref()
-#     available_seats_by_flight_and_class_service_test = AvailableSeatsByFlightandClassServiceTest()
-#     available_seats_by_flight_and_class_service_test.test_available_seats_by_flight_and_class()
-#     os.remove("./test.db")
-
-from presentation.intro import intro
 
 if __name__ == '__main__':
+    database = database_handler("booking.db")
+    booking_repository = DatabaseBookingRepository(database)
+    files = ReadFiles("./data_files/flight_data").read()
+    flight_repository = FileFlightRepository(files)    
+    from core.data.files.file_flight_repository import FileFlightRepository
+
+    setup(database)
     while(True):
-        intro.start()
+        intro.start(booking_repository, flight_repository)
+
+

@@ -102,12 +102,12 @@ class BookFlightService:
             add_booking_response = add_booking_usecase.execute()
 
             if isinstance(add_booking_response, AddBookingResponse):
-                return add_booking_response
+                return (add_booking_response, total_flight_price)
             elif isinstance(add_booking_response, AddBookingError):
                 return add_booking_response.message
             
 
         except Exception as err:
-            print("Booking Failed!" + str(err))
+            return("Booking Failed!" + str(err))
         
         

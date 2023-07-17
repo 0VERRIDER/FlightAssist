@@ -11,4 +11,4 @@ def run_tests():
     TestBookingUsecases().run()
     TestFileFlightRepository().run()
     TestFlightUseCases().run()
-    # os.remove("test.db")
+    os.remove("test.db")

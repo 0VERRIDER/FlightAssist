@@ -27,6 +27,7 @@ class GetFlightByDestinationAndOriginUseCase:
             flights = self.flight_repository.get_flight_by_origin_and_destination(self.request.destination, self.request.origin)
             response = GetFlightByDestinationAndOriginResponse(flights)
             return response
+        
         except Exception as e:
             error = GetFlightByDestinationAndOriginError("Error getting flight by destination and origin" + str(e))
             return error

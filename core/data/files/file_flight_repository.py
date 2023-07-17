@@ -8,6 +8,7 @@ class FileFlightRepository(FlightRepository):
     def add_flight(self, flight):
         pass
 
+    # Get flight by id
     def get_flight(self, flight_id):
         flights = self.get_all_flights()
         flight = [item for item in flights if item.get("flight_id") == flight_id]

@@ -19,8 +19,7 @@ class CancelFlightService:
         if isinstance(get_booking_response, GetBookingResponse):
             booking = get_booking_response.booking
         elif isinstance(get_booking_response, GetBookingError):
-            raise Exception(get_booking_response.message)
-        
+            return "Invalid Booking Id!"        
 
         # If the number of seats to cancel is equal to the number of seats in the booking, delete the booking
         if len(seats_to_cancel) == 0 or seats_to_cancel == StringUtils(booking["booked_seats"]).to_list():
@@ -28,9 +27,9 @@ class CancelFlightService:
             delete_booking_usecase = DeleteBookingUseCase(self.booking_repository, delete_booking_request)
             delete_booking_response = delete_booking_usecase.execute()
             if isinstance(delete_booking_response, DeleteBookingResponse):
-                return True
+                return "seat cancelled"
             elif isinstance(delete_booking_response, DeleteBookingError):
-                return False
+                return "Error Ocurred!"
         else:
             # get flight seat-arrangement
             get_flight_seats = GetFlightSeatByIdRequest(booking["flight_id"])
@@ -41,8 +40,7 @@ class CancelFlightService:
             if isinstance(get_flight_seats_response, GetFlightSeatByIdResponse):
                 seats = get_flight_seats_response.flight_seat
             elif isinstance(get_flight_seats_response, GetFlightSeatByIdError):
-                raise Exception("Booking Failed!" + get_flight_seats_response.message)
-            
+                return "Error Ocurred!"            
 
             old_seats = StringUtils(booking["booked_seats"]).to_list()
             updated_seats = [seat for seat in old_seats if seat not in seats_to_cancel]
@@ -51,8 +49,6 @@ class CancelFlightService:
             update_booking_usecase = UpdateBookingUseCase(self.booking_repository, update_booking_request)
             update_booking_response = update_booking_usecase.execute()
             if isinstance(update_booking_response, UpdateBookingResponse):
-                print("Eureka")
-                return True
+                return "seats_cancelled!"
             elif isinstance(update_booking_response, UpdateBookingError):
-                print(update_booking_response.message)
-                return False
+                return update_booking_response.message

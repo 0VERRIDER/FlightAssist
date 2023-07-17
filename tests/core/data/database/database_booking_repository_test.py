@@ -49,7 +49,6 @@ class DatabaseBookingRepositoryTest:
         def test_get_booking(self):
             try:
                 data = self.database_booking_repository.get_booking(booking_id = 1)
-                print(data)
                 return(Fore.GREEN + "Repository Test passed" + Style.RESET_ALL)
             except Exception as e:
                 return(Fore.RED + "Repository Test failed: " + str(e) + Style.RESET_ALL)

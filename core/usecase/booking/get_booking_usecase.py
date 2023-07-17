@@ -24,7 +24,6 @@ class GetBookingUseCase:
     def execute(self):
         try:
             booking = self.booking_repository.get_booking(self.request.booking_id)
-            print(len(booking))
 
             if len(booking) == 0:
                 raise Exception("Booking not found")

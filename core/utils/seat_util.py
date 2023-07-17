@@ -53,8 +53,8 @@ def to_num(letter):
   return ord(letter) - 64
 
 def generate_seat_structure(seat_structure, num_rows, booked_seats):
-    seat_list = []
     booked_seats =   [f"{int(seat.split('_')[0]):02d}_{seat.split('_')[1]}" for seat in booked_seats]
+    seat_list = []
     for row_num in range(num_rows):
         row_number = str(row_num + 1).zfill(2)  # Adjust row number to two digits
         row_letter = chr(ord('A') + row_num)
@@ -64,10 +64,10 @@ def generate_seat_structure(seat_structure, num_rows, booked_seats):
             for _ in range(num_seats):
                 column_letter = chr(ord('A') + (seat_number - 1))
                 seat_label = f"{row_number}_{column_letter}"
-                row_column = f"{row_letter}_{column_letter}"
                 seats.append(seat_label)
                 seat_number += 1
-            seats.extend([''] * 2)  # Add 2 extra gaps between sections
-        seat_list.extend(seats)
-        seat_list = [seat if seat not in booked_seats else "XX_X" for seat in seat_list]
+            seats.extend([''] * 2)
+            seats = [seat if seat not in booked_seats else "XX_X" for seat in seats]  
+        row = " ".join(seats)
+        seat_list.append(row)
     return seat_list

@@ -17,7 +17,6 @@ def get_flight_data(data):
       extracted_data = dict()
       split_data = class_data.split(":")
       class_name = split_data[0].strip()
-      print
       nums, value = eval(split_data[1].strip().replace("{", "[").replace("}", "]"))
       seat_arrangement = nums
       num_of_rows = value
