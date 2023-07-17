@@ -1,3 +1,4 @@
+# a function to slice a list based on a pattern list
 def slice_list(original_list, pattern_list):
     sliced_list = []
     start_index = 0
@@ -9,6 +10,7 @@ def slice_list(original_list, pattern_list):
 
     return sliced_list
 
+# a function to get seat type from seat arrangement
 def get_seat_type_from_seat_arrangement(seat_arrangement):
   middle = []
   aisle = []
@@ -34,6 +36,7 @@ def get_seat_type_from_seat_arrangement(seat_arrangement):
   return (window,middle,aisle)
 
 
+# a function to get seat type from seat number
 def get_seat_type_from_seat_number(seat_arrangement, seatnumbers):
     window, middle, aisle = get_seat_type_from_seat_arrangement(seat_arrangement)
 
@@ -49,9 +52,11 @@ def get_seat_type_from_seat_number(seat_arrangement, seatnumbers):
 
     return seat_types
 
+# a function to convert letter to number
 def to_num(letter):
   return ord(letter) - 64
 
+# a function to generate seat structure
 def generate_seat_structure(seat_structure, num_rows, booked_seats):
     booked_seats =   [f"{int(seat.split('_')[0]):02d}_{seat.split('_')[1]}" for seat in booked_seats]
     seat_list = []

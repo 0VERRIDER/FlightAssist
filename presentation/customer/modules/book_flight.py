@@ -25,11 +25,14 @@ def book_flight(booking_repository, flight_repository, flight):
         book_flight(booking_repository, flight_repository, flight)
 
     print_header("Available seats in: " + class_name)
-            
+    
+    # Create an instance of the service
     available_seats_by_flight_and_class_service = AvailableSeatsByFlightAndClassService(booking_repository, flight_repository) 
 
+    # Call the service to get the available seats
     response = available_seats_by_flight_and_class_service.get_available_seats_by_flight_and_class(flight["flight_id"], class_name)
     
+    # Print the response
     for seat_row in response:
         print(seat_row)
         

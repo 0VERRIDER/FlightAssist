@@ -13,7 +13,8 @@ class FileFlightRepository(FlightRepository):
         flights = self.get_all_flights()
         flight = [item for item in flights if item.get("flight_id") == flight_id]
         return flight
-
+    
+    # Get all flights
     def get_all_flights(self):
         data = self.file
         flights = get_flight_data(data)
@@ -25,11 +26,13 @@ class FileFlightRepository(FlightRepository):
     def delete_flight(self, flight_id):
         pass
 
+    # Get flight by destination
     def get_flight_by_destination(self, destination):
         flights = self.get_all_flights()
         flights_by_destination = [item for item in flights if item.get("destination") == destination ]
         return flights_by_destination
 
+    # Get flight by origin
     def get_flight_by_origin(self, origin):
         flights = self.get_all_flights()
         flights_by_destination = [item for item in flights if item.get("source") == origin ]
@@ -44,16 +47,18 @@ class FileFlightRepository(FlightRepository):
     def get_flight_by_destination_and_seats(self, destination, seats):
         pass
 
+    # Get seats by flight_id
     def get_flight_seats_by_id(self, flight_id):
         flight = self.get_flight(flight_id)[0]
         return flight["seat_details"]
     
+    # Get all flights and seats
     def get_all_flights_and_seats(self):
         flights = self.get_all_flights()
         flights_and_seats = [{"flight_id": item["flight_id"], "seat_details": item["seat_details"]} for item in flights]
         return flights_and_seats
 
-
+    # Get seats by flight_id and flight_type
     def get_flight_seats_by_id_and_type(self, flight_id, flight_type):
         flight = self.get_flight(flight_id)[0]
         return flight["seat_details"][flight_type]
@@ -61,6 +66,7 @@ class FileFlightRepository(FlightRepository):
     def update_flight_seats_by_id(self, flight_id, seats):
         pass
 
+    # Get flight types by flight_id
     def get_flight_types_by_id(self, flight_id):
         flight = self.get_flight(flight_id)[0]
         return list(flight["seat_details"].keys())
@@ -68,6 +74,7 @@ class FileFlightRepository(FlightRepository):
     def get_flight_by_type_and_seats(self, flight_type, seats):
         pass
 
+    # Get flight by origin and destination
     def get_flight_by_origin_and_destination(self, origin, destination):
         flights = self.get_all_flights()
         flights_by_origin_and_destination = [item for item in flights if item.get("source") == origin and item.get("destination") == destination ]

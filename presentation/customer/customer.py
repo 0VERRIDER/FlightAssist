@@ -4,6 +4,7 @@ from presentation.customer.modules.get_details_of_booking import get_booking_det
 from presentation.customer.modules.list_all_flights import list_all_flights
 from presentation.customer.modules.search_flight import search_flight
 from presentation.customer.modules.seat_availability import seat_availability
+from presentation.customer.modules.update_meal_preference import update_meal_preference
 
 def customer_login(booking_repository, flight_repository):
     print_header()
@@ -12,8 +13,9 @@ def customer_login(booking_repository, flight_repository):
     print("2. Search Flights")
     print("3. Check Seat Availability")
     print("4. Get Details of Booking")
-    print("5. Cancel Booking")
-    print("6. Exit")
+    print("5. Get Details of Booking")
+    print("6. Cancel Booking")
+    print("7. Exit")
 
     choice = input("Enter your choice: ")
 
@@ -29,12 +31,13 @@ def customer_login(booking_repository, flight_repository):
     elif choice == "4":
         clear_terminal()
         get_booking_details(booking_repository)
-   
     elif choice == "5":
+            clear_terminal()
+            update_meal_preference(booking_repository)
+    elif choice == "6":
         clear_terminal()
         cancel_booking(booking_repository, flight_repository)
-
-    elif choice == "6":
+    elif choice == "7":
         exit()
     else:
         print("Invalid Choice")

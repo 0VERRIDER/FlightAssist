@@ -1,6 +1,7 @@
 def get_flight_data(data):
   flights = []
 
+  # populate contents from file
   for file_name, content in data.items():
     flight_data = dict()
     file_name = file_name.split(".")[0]
@@ -13,6 +14,7 @@ def get_flight_data(data):
 
     raw_data = content['data']
 
+    # populate seat data
     for class_data in raw_data:
       extracted_data = dict()
       split_data = class_data.split(":")
@@ -30,6 +32,7 @@ def get_flight_data(data):
       flight_data["seat_details"][class_name] = extracted_data
       flight_data["flight_status"] = "Confirmed"
     
+    # append to flight list
     flights.append(flight_data)
   return flights
 
